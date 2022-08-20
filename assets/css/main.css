@@ -226,6 +226,7 @@ input, select, textarea {
 		font-size: 0.8em;
 	}
 
+	
 /* Container */
 
 	.container {
@@ -234,7 +235,275 @@ input, select, textarea {
 		width: 1400px;
 	}
 
-		@media screen and (max-width: 1680px) {
+	/* my additions */
+body {
+	background-color: #ECECEC;
+}
+
+
+
+#archer a, #rogue a, #warrior a, #mage a, #shaman a, #druid a {
+	margin: auto;
+} 
+
+.classImage {
+	max-height: 64px;
+	max-width: 64px;
+	align-self: center;
+}
+
+#battleButton{
+	background-color: transparent;
+	border: 3px solid white;
+}
+
+
+/* Game */
+
+
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+input[type="checkbox"] {
+	appearance: checkbox !important;
+}
+
+
+.card, .card * , .topCard *, .middleCard *, .movesCard * 
+.bottomCard *, .cardStats .armor, .cardStats .health, .cardStats .status{
+  display: flex;
+}
+
+.topCard, .bottomCard , .middleCard, .movesCard{
+	margin-bottom: .5em;
+}
+
+.movesCard {
+	margin-top: 0.5em;
+}
+
+main {
+	display: flex;
+  justify-content: space-around;
+}
+
+
+.card {
+  border: .5rem solid black;
+  border-radius: 1rem;
+  width: 35%;
+  flex-direction: column;
+  background-color: #FFF9BE;
+}
+
+.rules { 
+  display: flex;
+  width: 100%;
+  background-color: #5CAB7D;
+  flex-direction: column;
+  margin-top: 4rem;
+}
+.rules > h2{
+  justify-content: center;
+  display:flex;
+  width: 100%;
+}
+.rules > p{
+  display:flex;
+  width: 100%;
+  justify-content: center;
+}
+/******************************************
+/* TOP CARD STYLES
+/*******************************************/
+.topCard {
+  font-size: 1.6rem;
+  border-bottom: .2rem;
+  justify-content:space-around;
+  overflow: visible;
+  width: 100%;
+  height: 3.4rem; 
+}
+.classSelect , .raceSelect, .mageSelect{
+  font-size: 1rem;
+  align-items: center;
+  width: 25%;
+}
+
+.raceSelect {
+  width: 45%;
+}
+.cardStats {
+  width: 30%;
+  justify-content: space-evenly;
+  align-content: center;
+
+  height: 2rem
+}
+
+.armor, .health{
+  width: 20%;
+  min-height: 2rem;
+  max-height: 3rem;
+  border: .5rem solid black;
+  justify-content: center;
+  align-content: center;
+  font-size: 1rem;
+}
+
+.attackImg, .buyImg, .useImg{
+  max-height: 25px;
+  max-width: 25px;
+}
+
+.armor {
+  background-color: skyblue;
+  border: none;
+  border-radius: 25%;
+}
+.armorImage , .heartImage{
+  max-height: 15px;
+  max-width: 15px;
+  margin-right: -4rem;
+  align-self: flex-end;
+  z-index: 1;
+}
+.health {
+  background-color: #5CAB7D;
+  border: none;
+  border-radius: 25%;
+}
+/******************************************
+/* Middle CARD STYLES
+/*******************************************/
+.middleCard button {
+  width: 33.333%;
+  justify-content: center;
+}
+.middleCard > button * {
+  width: 30%
+}
+
+.inventory , .inventory *{
+  display: flex;
+  height:fit-content;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  border: .3rem solid #76549A;
+  font-size: 2rem;
+}
+/******************************************
+/* Moves CARD STYLES
+/*******************************************/
+.movesCard{
+  flex-direction: column;
+}
+.movesCard section{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: fit-content;
+  border-bottom: .3rem solid black;
+  font-size: 1.5rem;
+}
+
+.movesCard section:hover {
+  scale: 1;
+  color: bisque;
+}
+
+.buttons:hover {
+  scale:1;
+}
+/******************************************
+/* Moves CARD STYLES
+/*******************************************/
+
+.bottomCard {
+  align-content: stretch;
+
+}
+.bottomCard *{
+  height: fit-content;
+  font-size: 1rem;
+	width: 100%;
+}
+
+.playerOneMoves, .playerTwoMoves{
+	margin-bottom: .5em;
+}
+
+
+
+/******************************************
+/* Buttons and Locks
+/*******************************************/
+
+.locks {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  padding-top: 2rem;
+}
+
+.buttons{
+  background-color: #FFF9BE;
+  box-shadow: .3rem .2rem #554640;
+	
+}
+.endTurn, .ActionDice, .ClassDice{
+	width: 75%;
+	padding: 1em 1em 1em 1em;
+}
+
+/******************************************
+/* attack and mp showing
+/*******************************************/
+
+.attack.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.playerMp{
+  display: grid;
+  justify-self: right;
+}
+.playerAtt{
+  display: grid;
+  justify-self: left;
+}
+
+#mageSelectorOne, #mageSelectorTwo{
+
+  position: fixed;
+  top: 5%;
+  transform: translate(-50%, 5%);
+  border: 3px solid #999999;
+  z-index: 9;
+}
+
+#magePopupOne{
+  left: 25%;
+}
+
+#magePopupTwo{
+  left: 75%;
+}
+#magePopupOne, #magePopupTwo {
+  display: none;
+  position: relative;
+  text-align: center;
+  width: 50%;
+}
+
+
+
+
+
+	@media screen and (max-width: 1680px) {
 
 			.container {
 				width: 1200px;
@@ -3135,268 +3404,12 @@ input, select, textarea {
 					.carousel article .image {
 						margin-bottom: 2em;
 					}
+/* mobile game */
+	#game {
+		flex-direction: column;
+	}
+	.card {
+			width: 100%;
+		}
 
 	}
-/* my additions */
-body {
-	background-color: #ECECEC;
-}
-
-
-
-#archer a, #rogue a, #warrior a, #mage a, #shaman a, #druid a {
-	margin: auto;
-} 
-
-.classImage {
-	max-height: 64px;
-	max-width: 64px;
-	align-self: center;
-}
-
-#battleButton{
-	background-color: transparent;
-	border: 3px solid white;
-}
-
-
-/* Game */
-
-
-
-/******************************************
-/* LAYOUT
-/*******************************************/
-input[type="checkbox"] {
-	appearance: checkbox !important;
-}
-
-
-.card, .card * , .topCard *, .middleCard *, .movesCard * 
-.bottomCard *, .cardStats .armor, .cardStats .health, .cardStats .status{
-  display: flex;
-}
-
-.topCard, .bottomCard , .middleCard, .movesCard{
-	margin-bottom: .5em;
-}
-
-.movesCard {
-	margin-top: 0.5em;
-}
-
-main {
-	display: flex;
-  justify-content: space-around;
-}
-
-
-.card {
-  border: .5rem solid black;
-  border-radius: 1rem;
-  width: 35%;
-  flex-direction: column;
-  background-color: #FFF9BE;
-}
-
-.rules { 
-  display: flex;
-  width: 100%;
-  background-color: #5CAB7D;
-  flex-direction: column;
-  margin-top: 4rem;
-}
-.rules > h2{
-  justify-content: center;
-  display:flex;
-  width: 100%;
-}
-.rules > p{
-  display:flex;
-  width: 100%;
-  justify-content: center;
-}
-/******************************************
-/* TOP CARD STYLES
-/*******************************************/
-.topCard {
-  font-size: 1.6rem;
-  border-bottom: .2rem;
-  justify-content:space-around;
-  overflow: visible;
-  width: 100%;
-  height: 3.4rem; 
-}
-.classSelect , .raceSelect, .mageSelect{
-  font-size: 1rem;
-  align-items: center;
-  width: 25%;
-}
-
-.raceSelect {
-  width: 45%;
-}
-.cardStats {
-  width: 30%;
-  justify-content: space-evenly;
-  align-content: center;
-
-  height: 2rem
-}
-
-.armor, .health{
-  width: 20%;
-  min-height: 2rem;
-  max-height: 3rem;
-  border: .5rem solid black;
-  justify-content: center;
-  align-content: center;
-  font-size: 1rem;
-}
-
-.attackImg, .buyImg, .useImg{
-  max-height: 25px;
-  max-width: 25px;
-}
-
-.armor {
-  background-color: skyblue;
-  border: none;
-  border-radius: 25%;
-}
-.armorImage , .heartImage{
-  max-height: 15px;
-  max-width: 15px;
-  margin-right: -4rem;
-  align-self: flex-end;
-  z-index: 1;
-}
-.health {
-  background-color: #5CAB7D;
-  border: none;
-  border-radius: 25%;
-}
-/******************************************
-/* Middle CARD STYLES
-/*******************************************/
-.middleCard button {
-  width: 33.333%;
-  justify-content: center;
-}
-.middleCard > button * {
-  width: 30%
-}
-
-.inventory , .inventory *{
-  display: flex;
-  height:fit-content;
-  justify-content: center;
-  align-content: center;
-  width: 100%;
-  border: .3rem solid #76549A;
-  font-size: 2rem;
-}
-/******************************************
-/* Moves CARD STYLES
-/*******************************************/
-.movesCard{
-  flex-direction: column;
-}
-.movesCard section{
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: fit-content;
-  border-bottom: .3rem solid black;
-  font-size: 1.5rem;
-}
-
-.movesCard section:hover {
-  scale: 1;
-  color: bisque;
-}
-
-.buttons:hover {
-  scale:1;
-}
-/******************************************
-/* Moves CARD STYLES
-/*******************************************/
-
-.bottomCard {
-  align-content: stretch;
-
-}
-.bottomCard *{
-  height: fit-content;
-  font-size: 1rem;
-	width: 100%;
-}
-
-.playerOneMoves, .playerTwoMoves{
-	margin-bottom: .5em;
-}
-
-
-
-/******************************************
-/* Buttons and Locks
-/*******************************************/
-
-.locks {
-  display: flex;
-  width: 100%;
-  justify-content: space-around;
-  padding-top: 2rem;
-}
-
-.buttons{
-  background-color: #FFF9BE;
-  box-shadow: .3rem .2rem #554640;
-	
-}
-.endTurn, .ActionDice, .ClassDice{
-	width: 75%;
-	padding: 1em 1em 1em 1em;
-}
-
-/******************************************
-/* attack and mp showing
-/*******************************************/
-
-.attack.buttons {
-  display: flex;
-  justify-content: space-between;
-}
-
-.playerMp{
-  display: grid;
-  justify-self: right;
-}
-.playerAtt{
-  display: grid;
-  justify-self: left;
-}
-
-#mageSelectorOne, #mageSelectorTwo{
-
-  position: fixed;
-  top: 5%;
-  transform: translate(-50%, 5%);
-  border: 3px solid #999999;
-  z-index: 9;
-}
-
-#magePopupOne{
-  left: 25%;
-}
-
-#magePopupTwo{
-  left: 75%;
-}
-#magePopupOne, #magePopupTwo {
-  display: none;
-  position: relative;
-  text-align: center;
-  width: 50%;
-}
