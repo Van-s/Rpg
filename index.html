@@ -30,9 +30,10 @@
 						<nav id="nav">
 							<ul>
 								<li><a href="index.html">Home</a></li>
-								<li><a href="left-sidebar.html">Left Sidebar</a></li>
-								<li><a href="right-sidebar.html">Right Sidebar</a></li>
 								<li><a href="classes.html">Classes</a></li>
+								<li><a href="rules.html">Rules</a></li>
+								<li><a href="support.html">Support</a></li>
+
 							</ul>
 						</nav>
 
@@ -48,52 +49,244 @@
 					</header>
 				</section>
 
+						<!-- Main -->
+						<main id =  "game">
+							<section class="card playerOne" id="playerOneEntireCard">
+								<section class="topCard">
+									<select class="classSelect" id="p1ClassSelect" onchange="p1UpdateClass()">
+										<option value="">Select a class</option>
+										<option value="rogue">Rogue</option>
+										<option value="archer">Archer</option>
+										<option value="druid">Druid</option>
+										<option value="shaman">Shaman</option>
+										<option value="warrior">Warrior</option>
+										<option value="mage">Mage</option>
+									</select>
+									<select class="raceSelect" id="p1RaceSelect" onchange="p1UpdateRace()">
+										<option value="">Select a race</option>
+										<option value="goblin">Goblin (Bust = Crit)</option>
+										<option value="elf">Elf (+1 Base Mp)</option>
+										<option value="orc">Orc (+2 Max Health)</option>
+										<option value="dwarf">Dwarf (+8 Armor)</option>
+										<option value="undead">Undead (+1 heal on attack)</option>
+									</select>
+									<section class="cardStats">
+										<img  class="armorImage" src="/images/shield.png">
+										<span class="armor">0</span>
+										<img  class="heartImage" src="/images/heart.png">
+										<span class="health">0</span>
+									</section>
+								</section>
+								<section class="middleCard">
+									<button class="attack buttons playerOneButtons" disabled="true" id="playerOneAttack" onclick="useAttack(playerOne, playerTwo, 'basic')">
+										<span class="playerAtt"></span>
+										<img class="attackImg"src="/images/sword.png" alt="Attack">
+										<span class="playerMp"></span>
+									</button>
+									<button class="useAbility buttons playerOneButtons" disabled="true" id="playerOneUse" onclick="useAbility(playerOne, playerTwo)">
+										<img class="useImg"src="/images/use.png" alt="Abilities">
+									</button>
+									<button class="buy buttons playerOneButtons" disabled="true" id="playerOneBuy" onclick="buy(playerOne)">
+										<img class="buyImg"src="/images/buy.png" alt="Buy">
+									</button>
+									
+								</section>
+								<section class="inventory" id="playerOneInventory"></section>
+								<section class="movesCard">
+									<section id="playerOneMoveOne" class="moveOne playerOneMoves"  >
+										<p></p>
+										<div></div>
+									</section>
+									<section id="playerOneMoveTwo" class="moveTwo playerOneMoves">
+										<p></p>
+										<div></div>
+									</section>
+									<section id="playerOneMoveThree" class="moveThree playerOneMoves">
+										<p></p>
+										<div></div>
+									</section>
+									<section id="playerOneMoveFour" class="moveFour playerOneMoves">
+										<p></p>
+										<div></div>
+									</section>
+									<section id="playerOneMoveFive" class="moveFive playerOneMoves">
+										<p></p>
+										<div></div>
+									</section>
+									<section id="playerOneMoveSix" class="moveSix playerOneMoves">
+										<p></p>
+										<div></div>
+									</section>
+								</section>
+								<section class="bottomCard">
+									<div class="dice">
+										<button class="ClassDice buttons playerOneButtons" onclick="roll(playerOne, 'classDice')" disabled="true">Class</button>
+									</div>
+									<div class="dice">
+										<button id="playerOneActionOne" class="ActionDice buttons playerOneButtons" onclick="roll(playerOne, 'actionOneDice')" disabled="true">Action</button>
+										<input type="checkbox" id="playerOneActionOneCheck" class="checkbox">
+									</div>
+									<div class="dice">
+										<button id="playerOneActionTwo" class="ActionDice buttons playerOneButtons" onclick="roll(playerOne, 'actionTwoDice')" disabled="true">Action</button>
+										<input type="checkbox" id="playerOneActionTwoCheck" class="checkbox">
+									</div>
+									<button class="endTurn buttons playerOneButtons" onclick="endTurn(playerOne)" disabled="true">End Turn</button>
+								</section>
+								<section class="locks">
+									<button id="playerOneReset" onclick="playerOneReset()" class="resButtons buttons">Reset</button>
+									<span class="p1turnDisplay"></span>
+									<button id="playerOneLock" onclick="playerOneLock()" class="lockButtons buttons ">Lock</button>
+								</section>
+							</section>
+							<section class="card playerTwo" id="playerTwoEntireCard">
+								<section class="topCard">
+									<select class="classSelect" id="p2ClassSelect" onchange="p2UpdateClass()">
+										<option value="">Select a class</option>
+										<option value="rogue">Rogue</option>
+										<option value="archer">Archer</option>
+										<option value="druid">Druid</option>
+										<option value="shaman">Shaman</option>
+										<option value="warrior">Warrior</option>
+										<option value="mage">Mage</option>
+									</select>
+									<select class="raceSelect" id="p2RaceSelect" onchange="p2UpdateRace()">
+										<option value="">Select a race</option>
+										<option value="goblin">Goblin (Bust = Crit)</option>
+										<option value="elf">Elf (+1 Base Mp)</option>
+										<option value="orc">Orc (+2 Max Health)</option>
+										<option value="dwarf">Dwarf (+8 Armor)</option>
+										<option value="undead">Undead (+1 heal on attack)</option>
+									</select>
+									<section class="cardStats">
+										<img  class="armorImage" src="/images/shield.png">
+										<span class="armor">0</span>
+										<img  class="heartImage" src="/images/heart.png">
+										<span class="health">0</span>
+									</section>
+								</section>
+								<section class="middleCard">
+									<button class="attack buttons playerTwoButtons" disabled="true" id="playerTwoAttack" onclick="useAttack(playerTwo, playerOne, 'basic')">
+										<span class="playerAtt"></span>
+										<img class="attackImg"src="/images/sword.png" alt="Attack">
+										<span class="playerMp"></span>
+									</button>
+									<button class="useAbility buttons playerTwoButtons" disabled="true" id="playerTwoUse" onclick="useAbility(playerTwo, playerOne)">
+										<img class="useImg"src="/images/use.png" alt="Abilities">
+									</button>
+									<button class="buy buttons playerTwoButtons" disabled="true" id="playerTwoBuy" onclick="buy(playerTwo)">
+										<img class="buyImg"src="/images/buy.png" alt="Buy">	
+									</button>
+									
+								</section>
+								<section class="inventory" id="playerTwoInventory"></section>
+								<section class="movesCard">
+									<section id="playerTwoMoveOne" class="moveOne playerTwoMoves">
+										<p></p>
+										<div></div>
+									</section>
+									<section id="playerTwoMoveTwo" class="moveTwo playerTwoMoves">
+										<p></p>
+										<div></div>
+									</section>
+									<section id="playerTwoMoveThree" class="moveThree playerTwoMoves">
+										<p></p>
+										<div></div>
+									</section>
+									<section id="playerTwoMoveFour" class="moveFour playerTwoMoves">
+										<p></p>
+										<div></div>
+									</section>
+									<section id="playerTwoMoveFive" class="moveFive playerTwoMoves">
+										<p></p>
+										<div></div>
+									</section>
+									<section id="playerTwoMoveSix" class="moveSix playerTwoMoves">
+										<p></p>
+										<div></div>
+									</section>
+								</section>
+								<section class="bottomCard">
+									<div class="dice">
+										<button class="ClassDice buttons playerTwoButtons" onclick="roll(playerTwo, 'classDice')" disabled="true">Class</button>
+									</div>
+									<div class="dice">
+										<button id="playerTwoActionOne" class="ActionDice buttons playerTwoButtons" onclick="roll(playerTwo, 'actionOneDice')" disabled="true">Action</button>
+										<input type="checkbox" id="playerTwoActionOneCheck" class="checkbox" >
+									</div>
+									<div class="dice">
+										<button id="playerTwoActionTwo" class="ActionDice buttons playerTwoButtons" onclick="roll(playerTwo, 'actionTwoDice')" disabled="true">Action</button>
+										<input type="checkbox" id="playerTwoActionTwoCheck" class="checkbox" >
+									</div>
+									<button class="endTurn buttons playerTwoButtons" onclick="endTurn(playerTwo)" disabled="true">End Turn</button>
+								</section>
+								<section class="locks">
+									<button id="playerTwoReset" onclick="playerTwoReset()" class="resButtons buttons">Reset</button>
+									<span class="p2turnDisplay"></span>
+									<button id="playerTwoLock" onclick="playerTwoLock()" class="lockButtons buttons">Lock</button>
+								</section>
+							</section>
+						</main>
+						<div class="magePopup" id="magePopupOne">
+							<select class="mageSelect" id="mageSelectorOne" onchange="closeForm(playerOne)">
+								<option value="">Select abilitiy</option>
+								<option value="1">First</option>
+								<option value="2">Second</option>
+								<option value="3">Third</option>
+								<option value="4">Fourth</option>
+								<option value="6">Sixth</option>
+							</select>
+						</div>
+						<div class="magePopup" id="magePopupTwo">
+							<select class="mageSelect" id="mageSelectorTwo" onchange="closeForm(playerTwo)">
+								<option value="">Select abilitiy</option>
+								<option value="1">First</option>
+								<option value="2">Second</option>
+								<option value="3">Third</option>
+								<option value="4">Fourth</option>
+								<option value="6">Sixth</option>
+							</select>
+						</div>
+
 			<!-- Carousel -->
 				<section class="carousel">
 					<div class="reel">
 
-						<article>
-							<a href="classes.html#shaman" class="image featured"><img src="images/shaman.png" alt="" /></a>
+						<article  class="careClass" id="shamanCare">
 							<header>
 								<h3><a href="classes.html#shaman">Shaman</a></h3>
 							</header>
 							<p>Spiritual fighting perfected with a balance of strength in all categories.</p>
 						</article>
 
-						<article>
-							<a href="classes.html#rogue" class="image featured"><img src="images/rogue.png" alt="" /></a>
-							<header>
-								<h3><a href="classes.html#rogue">Rogue</a></h3>
-							</header>
-							<p>Cunning, sharp and deadly. Made to kill fast and die just a quick.</p>
-						</article>
-
-						<article>
-							<a href="classes.html#mage" class="image featured"><img src="images/mage.png" alt="" /></a>
-							<header>
-								<h3><a href="classes.html#mage">Mage</a></h3>
-							</header>
-							<p>Unrelenting power combined with endless arcane knowledge unleash chaos.</p>
-						</article>
-
-						<article>
-							<a href="classes.html#archer" class="image featured"><img src="images/archer.png" alt="" /></a>
-							<header>
-								<h3><a href="classes.html#archer">Archer</a></h3>
-							</header>
-							<p>Outwit your prey and use your instincts to guide you.</p>
-						</article>
-
-						<article>
-							<a href="classes.html#warrior" class="image featured"><img src="images/warrior.png" alt="" /></a>
+						<article class="careClass" id="warriorCare">
 							<header>
 								<h3><a href="classes.html#warrior">Warrior</a></h3>
 							</header>
 							<p>Trained to kill and built to last, the best of both worlds.</p>
 						</article>
 
-						<article>
-							<a href="classes.html#druid" class="image featured"><img src="images/druid.png" alt="" /></a>
+						<article class="careClass" id="mageCare">
+							<header>
+								<h3><a href="classes.html#mage">Mage</a></h3>
+							</header>
+							<p>Unrelenting power combined with endless arcane knowledge.</p>
+						</article>
+
+						<article class="careClass" id="archerCare">
+							<header>
+								<h3><a href="classes.html#archer">Archer</a></h3>
+							</header>
+							<p>Outwit your prey and use your instincts to guide you.</p>
+						</article>
+
+						<article  class="careClass"id="rogueCare">
+							<header>
+								<h3><a href="classes.html#rogue">Rogue</a></h3>
+							</header>
+							<p>Cunning, sharp and deadly. Made to kill fast and die just a quick.</p>
+						</article>
+
+						<article class="careClass" id="druidCare">
 							<header>
 								<h3><a href="classes.html#druid">Druid</a></h3>
 							</header>
@@ -107,40 +300,35 @@
 				<section class="carousel">
 					<div class="reel">
 
-						<article>
-							<a href="#" class="image featured"><img src="images/dwarf.png" alt="" /></a>
+						<article class="careClass" id="dwarfCare">
 							<header>
 								<h3><a href="#">Dwarf</a></h3>
 							</header>
 							<p>Gain 8 armor at the start of the match</p>
 						</article>
 
-						<article>
-							<a href="#" class="image featured"><img src="images/orc.png" alt="" /></a>
+						<article class="careClass" id="orcCare">
 							<header>
 								<h3><a href="#">Orc</a></h3>
-							</header>
+							</header class="careClass">
 							<p>Increase max health by 2</p>
 						</article>
 
-						<article>
-							<a href="#" class="image featured"><img src="images/elf.png" alt="" /></a>
+						<article class="careClass" id="elfCare">
 							<header>
 								<h3><a href="#">Elf</a></h3>
 							</header>
 							<p>Increase MP by 1</p>
 						</article>
 
-						<article>
-							<a href="#" class="image featured"><img src="images/goblin.png" alt="" /></a>
+						<article class="careClass" id="goblinCare">
 							<header>
 								<h3><a href="#">Goblin</a></h3>
 							</header>
 							<p>Bust equals crit when rolled</p>
 						</article>
 
-						<article>
-							<a href="#" class="image featured"><img src="images/undead.png" alt="" /></a>
+						<article class="careClass" id="undeadCare">
 							<header>
 								<h3><a href="#">Undead</a></h3>
 							</header>
@@ -149,232 +337,7 @@
 
 					</div>
 				</section>
-			<!-- Main -->
-			<main id =  "game">
-				<section class="card playerOne" id="playerOneEntireCard">
-					<section class="topCard">
-						<select class="classSelect" id="p1ClassSelect" onchange="p1UpdateClass()">
-							<option value="">Select a class</option>
-							<option value="rogue">Rogue</option>
-							<option value="archer">Archer</option>
-							<option value="druid">Druid</option>
-							<option value="shaman">Shaman</option>
-							<option value="warrior">Warrior</option>
-							<option value="mage">Mage</option>
-						</select>
-						<select class="raceSelect" id="p1RaceSelect" onchange="p1UpdateRace()">
-							<option value="">Select a race</option>
-							<option value="goblin">Goblin (Bust = Crit)</option>
-							<option value="elf">Elf (+1 Base Mp)</option>
-							<option value="orc">Orc (+2 Max Health)</option>
-							<option value="dwarf">Dwarf (+8 Armor)</option>
-							<option value="undead">Undead (+1 heal on attack)</option>
-						</select>
-						<section class="cardStats">
-							<img  class="armorImage" src="/images/shield.png">
-							<span class="armor">0</span>
-							<img  class="heartImage" src="/images/heart.png">
-							<span class="health">0</span>
-						</section>
-					</section>
-					<section class="middleCard">
-						<button class="attack buttons playerOneButtons" disabled="true" id="playerOneAttack" onclick="useAttack(playerOne, playerTwo, 'basic')">
-							<span class="playerAtt"></span>
-							<img class="attackImg"src="/images/sword.png" alt="Attack">
-							<span class="playerMp"></span>
-						</button>
-						<button class="useAbility buttons playerOneButtons" disabled="true" id="playerOneUse" onclick="useAbility(playerOne, playerTwo)">
-							<img class="useImg"src="/images/use.png" alt="Abilities">
-						</button>
-						<button class="buy buttons playerOneButtons" disabled="true" id="playerOneBuy" onclick="buy(playerOne)">
-							<img class="buyImg"src="/images/buy.png" alt="Buy">
-						</button>
-						
-					</section>
-					<section class="inventory" id="playerOneInventory"></section>
-					<section class="movesCard">
-						<section id="playerOneMoveOne" class="moveOne playerOneMoves"  >
-							<p></p>
-							<div></div>
-						</section>
-						<section id="playerOneMoveTwo" class="moveTwo playerOneMoves">
-							<p></p>
-							<div></div>
-						</section>
-						<section id="playerOneMoveThree" class="moveThree playerOneMoves">
-							<p></p>
-							<div></div>
-						</section>
-						<section id="playerOneMoveFour" class="moveFour playerOneMoves">
-							<p></p>
-							<div></div>
-						</section>
-						<section id="playerOneMoveFive" class="moveFive playerOneMoves">
-							<p></p>
-							<div></div>
-						</section>
-						<section id="playerOneMoveSix" class="moveSix playerOneMoves">
-							<p></p>
-							<div></div>
-						</section>
-					</section>
-					<section class="bottomCard">
-						<div class="dice">
-							<button class="ClassDice buttons playerOneButtons" onclick="roll(playerOne, 'classDice')" disabled="true">Class</button>
-						</div>
-						<div class="dice">
-							<button id="playerOneActionOne" class="ActionDice buttons playerOneButtons" onclick="roll(playerOne, 'actionOneDice')" disabled="true">Action</button>
-							<input type="checkbox" id="playerOneActionOneCheck" class="checkbox">
-						</div>
-						<div class="dice">
-							<button id="playerOneActionTwo" class="ActionDice buttons playerOneButtons" onclick="roll(playerOne, 'actionTwoDice')" disabled="true">Action</button>
-							<input type="checkbox" id="playerOneActionTwoCheck" class="checkbox">
-						</div>
-						<button class="endTurn buttons playerOneButtons" onclick="endTurn(playerOne)" disabled="true">End Turn</button>
-					</section>
-					<section class="locks">
-						<button id="playerOneReset" onclick="playerOneReset()" class="resButtons buttons">Reset</button>
-						<span class="p1turnDisplay"></span>
-						<button id="playerOneLock" onclick="playerOneLock()" class="lockButtons buttons ">Lock</button>
-					</section>
-				</section>
-				<section class="card playerTwo" id="playerTwoEntireCard">
-					<section class="topCard">
-						<select class="classSelect" id="p2ClassSelect" onchange="p2UpdateClass()">
-							<option value="">Select a class</option>
-							<option value="rogue">Rogue</option>
-							<option value="archer">Archer</option>
-							<option value="druid">Druid</option>
-							<option value="shaman">Shaman</option>
-							<option value="warrior">Warrior</option>
-							<option value="mage">Mage</option>
-						</select>
-						<select class="raceSelect" id="p2RaceSelect" onchange="p2UpdateRace()">
-							<option value="">Select a race</option>
-							<option value="goblin">Goblin (Bust = Crit)</option>
-							<option value="elf">Elf (+1 Base Mp)</option>
-							<option value="orc">Orc (+2 Max Health)</option>
-							<option value="dwarf">Dwarf (+8 Armor)</option>
-							<option value="undead">Undead (+1 heal on attack)</option>
-						</select>
-						<section class="cardStats">
-							<img  class="armorImage" src="/images/shield.png">
-							<span class="armor">0</span>
-							<img  class="heartImage" src="/images/heart.png">
-							<span class="health">0</span>
-						</section>
-					</section>
-					<section class="middleCard">
-						<button class="attack buttons playerTwoButtons" disabled="true" id="playerTwoAttack" onclick="useAttack(playerTwo, playerOne, 'basic')">
-							<span class="playerAtt"></span>
-							<img class="attackImg"src="/images/sword.png" alt="Attack">
-							<span class="playerMp"></span>
-						</button>
-						<button class="useAbility buttons playerTwoButtons" disabled="true" id="playerTwoUse" onclick="useAbility(playerTwo, playerOne)">
-							<img class="useImg"src="/images/use.png" alt="Abilities">
-						</button>
-						<button class="buy buttons playerTwoButtons" disabled="true" id="playerTwoBuy" onclick="buy(playerTwo)">
-							<img class="buyImg"src="/images/buy.png" alt="Buy">	
-						</button>
-						
-					</section>
-					<section class="inventory" id="playerTwoInventory"></section>
-					<section class="movesCard">
-						<section id="playerTwoMoveOne" class="moveOne playerTwoMoves">
-							<p></p>
-							<div></div>
-						</section>
-						<section id="playerTwoMoveTwo" class="moveTwo playerTwoMoves">
-							<p></p>
-							<div></div>
-						</section>
-						<section id="playerTwoMoveThree" class="moveThree playerTwoMoves">
-							<p></p>
-							<div></div>
-						</section>
-						<section id="playerTwoMoveFour" class="moveFour playerTwoMoves">
-							<p></p>
-							<div></div>
-						</section>
-						<section id="playerTwoMoveFive" class="moveFive playerTwoMoves">
-							<p></p>
-							<div></div>
-						</section>
-						<section id="playerTwoMoveSix" class="moveSix playerTwoMoves">
-							<p></p>
-							<div></div>
-						</section>
-					</section>
-					<section class="bottomCard">
-						<div class="dice">
-							<button class="ClassDice buttons playerTwoButtons" onclick="roll(playerTwo, 'classDice')" disabled="true">Class</button>
-						</div>
-						<div class="dice">
-							<button id="playerTwoActionOne" class="ActionDice buttons playerTwoButtons" onclick="roll(playerTwo, 'actionOneDice')" disabled="true">Action</button>
-							<input type="checkbox" id="playerTwoActionOneCheck" class="checkbox" >
-						</div>
-						<div class="dice">
-							<button id="playerTwoActionTwo" class="ActionDice buttons playerTwoButtons" onclick="roll(playerTwo, 'actionTwoDice')" disabled="true">Action</button>
-							<input type="checkbox" id="playerTwoActionTwoCheck" class="checkbox" >
-						</div>
-						<button class="endTurn buttons playerTwoButtons" onclick="endTurn(playerTwo)" disabled="true">End Turn</button>
-					</section>
-					<section class="locks">
-						<button id="playerTwoReset" onclick="playerTwoReset()" class="resButtons buttons">Reset</button>
-						<span class="p2turnDisplay"></span>
-						<button id="playerTwoLock" onclick="playerTwoLock()" class="lockButtons buttons">Lock</button>
-					</section>
-				</section>
-			</main>
-			<div class="magePopup" id="magePopupOne">
-				<select class="mageSelect" id="mageSelectorOne" onchange="closeForm(playerOne)">
-					<option value="">Select abilitiy</option>
-					<option value="1">First</option>
-					<option value="2">Second</option>
-					<option value="3">Third</option>
-					<option value="4">Fourth</option>
-					<option value="6">Sixth</option>
-				</select>
-			</div>
-			<div class="magePopup" id="magePopupTwo">
-				<select class="mageSelect" id="mageSelectorTwo" onchange="closeForm(playerTwo)">
-					<option value="">Select abilitiy</option>
-					<option value="1">First</option>
-					<option value="2">Second</option>
-					<option value="3">Third</option>
-					<option value="4">Fourth</option>
-					<option value="6">Sixth</option>
-				</select>
-			</div>
 
-
-			<!-- Rules -->
-				<div class="wrapper style2">
-
-					<article id="rules" class="container special">
-						<header>
-							<h2><a href="#">Rules</a></h2>
-							<p>
-								Sociis aenean eu aenean mollis mollis facilisis primis ornare penatibus aenean. Cursus ac enim
-								pulvinar curabitur morbi convallis. Lectus malesuada sed fermentum dolore amet.
-							</p>
-						</header>
-						<p>
-							Commodo id natoque malesuada sollicitudin elit suscipit. Curae suspendisse mauris posuere accumsan massa
-							posuere lacus convallis tellus interdum. Amet nullam fringilla nibh nulla convallis ut venenatis purus
-							sit arcu sociis. Nunc fermentum adipiscing tempor cursus nascetur adipiscing adipiscing. Primis aliquam
-							mus lacinia lobortis phasellus suscipit. Fermentum lobortis non tristique ante proin sociis accumsan
-							lobortis. Auctor etiam porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum
-							consequat integer interdum integer purus sapien. Nibh eleifend nulla nascetur pharetra commodo mi augue
-							interdum tellus. Ornare cursus augue feugiat sodales velit lorem. Semper elementum ullamcorper lacinia
-							natoque aenean scelerisque.
-						</p>
-						<footer>
-							<a href="#" class="button">Continue Reading</a>
-						</footer>
-					</article>
-
-				</div>
 
 
 			<!-- Footer -->

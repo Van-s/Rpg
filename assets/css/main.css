@@ -236,6 +236,136 @@ input, select, textarea {
 	}
 
 	/* my additions */
+
+@font-face {
+	font-family: classFont;
+	src: url(../webfonts/Anglorunic-q44q.ttf);
+}
+
+h3 {
+	font-family: classFont;
+	font-size: 3rem;
+}
+
+.careClass {
+	background-color: #3b454f;
+	--font-color: white;
+}
+
+
+
+#rogueCare h3 {
+	background-color: #3b454f;
+	color: #E92D2D;
+}
+
+#archerCare h3{
+	color: #306B34;
+	background-color: #3b454f;
+}
+
+#mageCare h3 {
+	color: #758BFD;
+	background-color: #3b454f;
+}
+
+#warriorCare h3{
+	color: #6D9F71;
+	background-color: #3b454f;
+}
+
+#druidCare h3{
+	color: #7A893B;
+	background-color: #3b454f;
+}
+
+#shamanCare h3{
+	color: #90C2E7;
+	background-color: #3b454f;
+}
+
+#dwarfCare h3 {
+	color: #FFB341;
+	background-color: #3b454f;
+}
+
+#undeadCare h3 {
+	color: #8490AE;
+	background-color: #3b454f;
+}
+
+ #elfCare h3 {
+	color: #FAFF5F;
+	background-color: #3b454f;
+}
+
+#orcCare h3 {
+	color: #439000;
+	background-color: #3b454f;
+}
+
+#goblinCare h3 {
+	color: #00D84C;
+	background-color: #3b454f;
+}
+
+
+#rogueCare {
+	color: var(--font-color);
+	background-color: #3b454f;
+}
+
+#archerCare{
+	color: var(--font-color);
+	background-color: #3b454f;
+}
+
+#mageCare {
+	color: var(--font-color);
+	background-color: #3b454f;
+}
+
+#warriorCare{
+	color: var(--font-color);
+	background-color: #3b454f;
+}
+
+#druidCare{
+	color: var(--font-color);
+	background-color: #3b454f;
+}
+
+#shamanCare{
+	color: var(--font-color);
+	background-color: #3b454f;
+}
+
+#dwarfCare{
+	color: var(--font-color);
+	background-color: #3b454f;
+}
+
+#undeadCare{
+	color: var(--font-color);
+	background-color: #3b454f;
+}
+
+#elfCare{
+	color: var(--font-color);
+	background-color: #3b454f;
+}
+
+#orcCare{
+	color: var(--font-color);
+	background-color: #3b454f;
+}
+
+#goblinCare{
+	color: var(--font-color);
+	background-color: #3b454f;
+}
+
+
 body {
 	background-color: #ECECEC;
 }
@@ -292,9 +422,9 @@ main {
 .card {
   border: .5rem solid black;
   border-radius: 1rem;
-  width: 35%;
+  width: 30%;
   flex-direction: column;
-  background-color: #FFF9BE;
+  background-color: #B3B8C2;
 }
 
 .rules { 
@@ -365,7 +495,7 @@ main {
 .armorImage , .heartImage{
   max-height: 15px;
   max-width: 15px;
-  margin-right: -4rem;
+  margin-right: -6rem;
   align-self: flex-end;
   z-index: 1;
 }
@@ -449,7 +579,7 @@ main {
 }
 
 .buttons{
-  background-color: #FFF9BE;
+  background-color: #E2E5E9;
   box-shadow: .3rem .2rem #554640;
 	
 }
@@ -2013,9 +2143,9 @@ main {
 
 /* Sections/Article */
 
-	section, article {
+	/* section, article {
 		margin-bottom: 3em;
-	}
+	} */
 
 		section > :last-child, section:last-child, article > :last-child, article:last-child {
 			margin-bottom: 0;
@@ -2756,6 +2886,9 @@ main {
 				text-align: center;
 				margin: 0 0 3em 0;
 			}
+		#footer {
+			background-color: #3b454f;
+		}
 
 		#footer .copyright {
 			text-align: center;
@@ -3411,5 +3544,9 @@ main {
 	.card {
 			width: 100%;
 		}
+	.armorImage , .heartImage{
+		margin-right: -3rem;
+
+	}
 
 	}
