@@ -273,7 +273,7 @@ const warriorDict = {
   moves: [
     'Blind Rage',
     'Overwhelm',
-    'reset multi',
+    'Bombard',
     'offense stanse (+1 dmg recieved and dished)',
     'Parry',
     'God’s Favorite'

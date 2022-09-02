@@ -242,6 +242,7 @@ input, select, textarea {
 	src: url(../webfonts/Anglorunic-q44q.ttf);
 }
 
+
 h3 {
 	font-family: classFont;
 	font-size: 3rem;
@@ -420,7 +421,7 @@ main {
 
 
 .card {
-  border: .5rem solid black;
+  border: .25rem solid black;
   border-radius: 1rem;
   width: 30%;
   flex-direction: column;
@@ -459,6 +460,7 @@ main {
   font-size: 1rem;
   align-items: center;
   width: 25%;
+	border-radius: .5rem;
 }
 
 .raceSelect {
@@ -535,7 +537,7 @@ main {
   justify-content: space-between;
   width: 100%;
   height: fit-content;
-  border-bottom: .3rem solid black;
+  border-bottom: .15rem solid black;
   font-size: 1.5rem;
 }
 
