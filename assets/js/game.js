@@ -23,19 +23,19 @@ const rogueDict = {
     abilityOne: function (self, enemy){
       attack(self, enemy, 'basic')
       self.updateDouble(true)
-      console.log('first strike landed')
+      writeToConsole('first strike landed')
     },
     abilityTwo: function (self, enemy){
       self.updateInvis(2)
-      console.log('invisible for 2 turns')
+      writeToConsole('invisible for 2 turns')
     },
     abilityThree: function (self, enemy){
       self.updateBleed(2)
-      console.log('bleeding for 2 turns')
+      writeToConsole('bleeding for 2 turns')
     },
     abilityFour: function (self, enemy){
       self.updateMulti(2)
-      console.log('blades sharpened')
+      writeToConsole('blades sharpened')
     },
     abilityFive: function (self, enemy){
       attack(self, enemy, 'modified', enemy.lastAttack)
@@ -118,42 +118,42 @@ const archerDict = {
   abilities: {
     abilityOne: function (self, enemy){
       self.updateMulti(2)
-      console.log('locked on')
+      writeToConsole('locked on')
     },
     abilityTwo: function (self, enemy){
         if(hasMove(enemy) != false){
           if (enemy.actionOne === '' && enemy.actionTwo === ''){
             resetClassMoves(enemy)
-            console.log(`${enemy.name}'s ability was negated`)
+            writeToConsole(`${enemy.name}'s ability was negated`)
           } else if (enemy.actionOne != '' && enemy.actionTwo != ''){
             let num = Math.ceil(Math.random()*3)
             if (num === 1) {
               resetClassMoves(enemy)
-              console.log(`${enemy.name}'s ability was negated`)
+              writeToConsole(`${enemy.name}'s ability was negated`)
             } else if (num === 2){
                 resetAction(enemy, 'action one')
-                console.log(`${enemy.name}'s action was negated`)
+                writeToConsole(`${enemy.name}'s action was negated`)
             } else {
                 resetAction(enemy, 'action two')
-                console.log(`${enemy.name}'s action was negated`)
+                writeToConsole(`${enemy.name}'s action was negated`)
             }
           }  else if (enemy.actionOne != '' && enemy.actionTwo === ''){
               let num = Math.ceil(Math.random()*2)
               if (num === 1) {
                 resetClassMoves(enemy)
-                console.log(`${enemy.name}'s ability was negated`)
+                writeToConsole(`${enemy.name}'s ability was negated`)
               } else if (num === 2){
                   resetAction(enemy, 'action one')
-                  console.log(`${enemy.name}'s action was negated`)
+                  writeToConsole(`${enemy.name}'s action was negated`)
               }
           } else if (enemy.actionOne === '' && enemy.actionTwo != ''){
             let num = Math.ceil(Math.random()*2)
             if (num === 1) {
               resetClassMoves(enemy)
-              console.log(`${enemy.name}'s ability was negated`)
+              writeToConsole(`${enemy.name}'s ability was negated`)
             } else if (num === 2){
                 resetAction(enemy, 'action two')
-                console.log(`${enemy.name}'s action was negated`)
+                writeToConsole(`${enemy.name}'s action was negated`)
             }
         }
       }else {
@@ -161,37 +161,37 @@ const archerDict = {
           let num = Math.ceil(Math.random()*2)
             if (num === 1){
               resetAction(enemy, 'action one')
-              console.log(`${enemy.name}'s action was negated`)
+              writeToConsole(`${enemy.name}'s action was negated`)
           } else {
               resetAction(enemy, 'action two')
-              console.log(`${enemy.name}'s action was negated`)
+              writeToConsole(`${enemy.name}'s action was negated`)
           }
         } else if (enemy.actionOne != '' && enemy.actionTwo === ''){
             resetAction(enemy, 'action one')
-            console.log(`${enemy.name}'s action was negated`)
+            writeToConsole(`${enemy.name}'s action was negated`)
         } else if (enemy.actionOne === '' && enemy.actionTwo != ''){
             resetAction(enemy, 'action two')
-            console.log(`${enemy.name}'s action was negated`)
+            writeToConsole(`${enemy.name}'s action was negated`)
         } else {
-           console.log('nothing was negated')
+           writeToConsole('nothing was negated')
           }
       }
     },
     abilityThree: function (self, enemy){
       enemy.updateKnockedDown(true)
-      console.log('knocking em down')
+      writeToConsole('knocking em down')
     },
     abilityFour: function (self, enemy){
       self.updateRapidFire(2)
-      console.log('rapid fire is engaged')
+      writeToConsole('rapid fire is engaged')
     },
     abilityFive: function (self, enemy){
       self.updateTarred(true)
-      console.log('tar trap is set')
+      writeToConsole('tar trap is set')
     },
     abilitySix: function (self, enemy){
       self.updateUpgrade(true)
-      console.log('upgrading')
+      writeToConsole('upgrading')
       self.attackUp(1)
     }
   }
@@ -225,23 +225,23 @@ const mageDict = {
   abilities: {
     abilityOne: function (self, enemy){
       self.updateNuke(1)
-      console.log('nuke incoming')
+      writeToConsole('nuke incoming')
     },
     abilityTwo: function (self, enemy){
       self.updateIcy(2)
-      console.log('feeling icy for two turns')
+      writeToConsole('feeling icy for two turns')
     },
     abilityThree: function (self, enemy){
       self.updateMissiles(4)
-      console.log('prepare for some missiles')
+      writeToConsole('prepare for some missiles')
     },
     abilityFour: function (self, enemy){
       if (self.arcaneFocus === true){
-        console.log('failed to focused')
+        writeToConsole('failed to focused')
       } else {
         self.updateArcaneFocus(true)
         self.updateMulti(1.5)
-        console.log('charging up')
+        writeToConsole('charging up')
       }
 
     },
@@ -251,14 +251,14 @@ const mageDict = {
       } else if (self === playerTwo) {
         document.getElementById("magePopupTwo").style.display = "block"
       } else {
-        console.log('failed to select ability')
+        writeToConsole('failed to select ability')
       }
       
     },
     abilitySix: function (self, enemy){
       self.updateRaisedMP(2)
       self.mpUp(2)
-      console.log(`The ${self.name} raised there mp by two`)
+      writeToConsole(`The ${self.name} raised there mp by two`)
     }
   }
 }
@@ -282,7 +282,7 @@ const warriorDict = {
   buttonColor: "#6D9F71",
   abilities: {
     abilityOne: function (self, enemy){
-      console.log('double time')
+      writeToConsole('double time')
       attack(self, enemy, 'basic')
       attack(self, enemy, 'basic')
     },
@@ -291,7 +291,7 @@ const warriorDict = {
     },
     abilityThree: function (self, enemy){
       enemy.resetMulti()
-      console.log(`Mutiplie has been reset for the ${enemy.name}`)
+      writeToConsole(`Mutiplie has been reset for the ${enemy.name}`)
 
     },
     abilityFour: function (self, enemy){
@@ -335,19 +335,19 @@ const shamanDict = {
   abilities: {
     abilityOne: function (self, enemy){
       self.updateBurn(2)
-      console.log('feel the burn!')
+      writeToConsole('feel the burn!')
     },
     abilityTwo: function (self, enemy){
       self.heal(Math.ceil(self.mp*1.5))
-      console.log(`the ${self.name} healed for ${Math.ceil(self.mp*1.5)}`)
+      writeToConsole(`the ${self.name} healed for ${Math.ceil(self.mp*1.5)}`)
     },
     abilityThree: function (self, enemy){
       self.updateEarthShield(true)
-      console.log(`the ${self.name} has raised an earth shield`)
+      writeToConsole(`the ${self.name} has raised an earth shield`)
     },
     abilityFour: function (self, enemy){
       enemy.updateKnockedDown(true)
-      console.log(`the ${self.name} has knocked down the ${enemy.name}`)
+      writeToConsole(`the ${self.name} has knocked down the ${enemy.name}`)
     },
     abilityFive: function (self, enemy){
       if(self.mp > self.att){
@@ -360,17 +360,17 @@ const shamanDict = {
       const num = Math.ceil(Math.random()*4)
       if (num === 1){
         self.updateTotem('fire')
-        console.log('a fire totem has been placed')
+        writeToConsole('a fire totem has been placed')
       } else if (num === 2){
         self.updateTotem('water')
-        console.log('a water totem has been placed')
+        writeToConsole('a water totem has been placed')
       } else if (num === 3){
         self.updateTotem('earth')
-        console.log('an earth totem has been placed')
+        writeToConsole('an earth totem has been placed')
         self.attackUp(1)
       } else if (num === 4){
         self.updateTotem('wind')
-        console.log('a wind totem has been placed')
+        writeToConsole('a wind totem has been placed')
         self.mpUp(1)
       }
 
@@ -399,41 +399,41 @@ const druidDict = {
     abilityOne: function (self, enemy){
       self.updateForm('wolf')
       self.attackUp(2)
-      console.log(`the ${self.name} has transformed into a wolf`)
+      writeToConsole(`the ${self.name} has transformed into a wolf`)
     },
     abilityTwo: function (self, enemy){
       self.updateForm('bear')
-      console.log(`the ${self.name} has transformed into a bear and gains 2 armor a turn`)
+      writeToConsole(`the ${self.name} has transformed into a bear and gains 2 armor a turn`)
     },
     abilityThree: function (self, enemy){
       self.heal(Math.ceil(self.mp/2))
       self.armorUp(Math.ceil(self.mp/2))
-      console.log(`the ${self.name} has called upon the trees to shield and heal them`)
+      writeToConsole(`the ${self.name} has called upon the trees to shield and heal them`)
     },
     abilityFour: function (self, enemy){
       if(self.ritual > 0){
-        console.log('the ritual has failed to perform again so soon')
+        writeToConsole('the ritual has failed to perform again so soon')
       } else {
           self.updateRitual(3)
           self.attackUp(2)
           self.mpUp(2)
-        console.log(`the ${self.name} has completed the ritual and gained power`)
+        writeToConsole(`the ${self.name} has completed the ritual and gained power`)
       }
 
     },
     abilityFive: function (self, enemy){
       if(self.suppression > 0){
-        console.log('the supression has failed to perform again so soon')
+        writeToConsole('the supression has failed to perform again so soon')
       } else {
           self.updateSuppression(2)
           enemy.attackUp(-2)
           enemy.mpUp(-2)
-        console.log(`the ${self.name} has completed the supression and taken power`)
+        writeToConsole(`the ${self.name} has completed the supression and taken power`)
       }
     },
     abilitySix: function (self, enemy){
       attack(self, enemy, 'modified', Math.ceil(self.mp/2))
-      console.log(`the ${self.name} has fired a moonblast`)
+      writeToConsole(`the ${self.name} has fired a moonblast`)
 
     }
   }
@@ -624,7 +624,7 @@ class playableClass {
     if (att < 0){
       att = 0
     }
-    console.log(`the ${this.name} was attacked for ${att}`)
+    writeToConsole(`the ${this.name} was attacked for ${att}`)
     if (this.armor > att) {
       this.armor = this.armor - att
     } else if (this.armor === 0) {
@@ -702,7 +702,7 @@ function closeForm (closer){
     resetClassMoves(playerOne)
     var select = document.getElementById('mageSelectorOne');
     var option = select.options[select.selectedIndex];
-    console.log(`the ${closer.name} chose ability ${option.value}`)
+    writeToConsole(`the ${closer.name} chose ability ${option.value}`)
     if (option.value === '1') {
         document.getElementById('playerOneMoveOne').style.backgroundColor = 'white'
     } else if (option.value === '2') {
@@ -720,7 +720,7 @@ function closeForm (closer){
     resetClassMoves(playerTwo)
     var select = document.getElementById('mageSelectorTwo');
     var option = select.options[select.selectedIndex];
-    console.log(`the ${closer.name} chose ability ${option.value}`)
+    writeToConsole(`the ${closer.name} chose ability ${option.value}`)
     if (option.value === '1') {
         document.getElementById('playerTwoMoveOne').style.backgroundColor = 'white'
     } else if (option.value === '2') {
@@ -840,7 +840,7 @@ function playerOneLock () {
   if (playerOne.name === '') {
     alert('you for got a class brother')
   } else if(lockOne === true){
-    console.log(`you are already locked in player one`)
+    writeToConsole(`you are already locked in player one`)
   } else {
     lockOne = true
     document.getElementById('p1ClassSelect').setAttribute('disabled', 'disabled')
@@ -872,7 +872,7 @@ function playerOneLock () {
       playerOne.armorUp(8)
       document.querySelector('.playerOne .armor').innerHTML = playerOne.armor
     } else if(playerOne.race === 'undead'){
-      console.log('welcome to the undead army')
+      writeToConsole('welcome to the undead army')
     } else {
       alert('you forgot a race brother')
     }
@@ -888,7 +888,7 @@ function playerTwoLock () {
   if (playerTwo.name === '') {
     alert('you for got a class brother')
   }else if(lockTwo === true){
-    console.log(`you are already locked in player two`)
+    writeToConsole(`you are already locked in player two`)
   }else {
     lockTwo = true
     document.getElementById('p2ClassSelect').setAttribute('disabled', 'disabled')
@@ -920,7 +920,7 @@ function playerTwoLock () {
         playerTwo.armorUp(8)
         document.querySelector('.playerTwo .armor').innerHTML = playerTwo.armor
     } else if(playerTwo.race === 'undead'){
-      console.log('welcome to the undead army')
+      writeToConsole('welcome to the undead army')
     }  else {
       alert('you forgot a race brother')
     }
@@ -943,7 +943,7 @@ function playerOneReset () {
   }
   resetAction(playerOne, 'action one')
   resetAction(playerOne, 'action two')
-  console.log('Game Reset by player one')
+  writeToConsole('Game Reset by player one')
   gameOver()
 }
 
@@ -959,7 +959,7 @@ function playerTwoReset () {
   }
   resetAction(playerTwo, 'action one')
   resetAction(playerTwo, 'action two')
-  console.log('Game Reset by player two')
+  writeToConsole('Game Reset by player two')
   gameOver()
 }
 
@@ -1130,7 +1130,7 @@ function roll (roller, dice) {
     rolls = rolls - 1
     if (dice === 'classDice') {
       classRoll = Math.ceil(Math.random()*6)
-      console.log(`${roller.name} rolled ${classRoll}`)
+      writeToConsole(`${roller.name} rolled ${classRoll}`)
       roller.updateClassDice(classRoll)
       if (roller === playerOne) {
         var elems = document.getElementsByClassName("playerOneMoves");
@@ -1172,7 +1172,7 @@ function roll (roller, dice) {
       }
     } else if (dice === 'actionOneDice') {
       actionRoll = Math.ceil(Math.random()*20)
-      console.log(`the ${roller.name} rolled a ${actionRoll}`)
+      writeToConsole(`the ${roller.name} rolled a ${actionRoll}`)
       if (roller === playerOne) {
         if (actionRoll === 1 && roller.race !== 'goblin') {
           document.getElementById('playerOneActionOne').innerHTML = 'Bust'
@@ -1195,7 +1195,7 @@ function roll (roller, dice) {
           document.getElementById('playerOneActionOne').innerHTML = 'Crit'
           roller.updateActionOne('crit')
         } else {
-          console.log("we ran into an error on player one action dice")
+          writeToConsole("we ran into an error on player one action dice")
         }
       } else if (roller === playerTwo) {
         if (actionRoll === 1 && roller.race !== 'goblin') {
@@ -1218,13 +1218,13 @@ function roll (roller, dice) {
           document.getElementById('playerTwoActionOne').innerHTML = 'Crit'
           roller.updateActionOne('crit')
         } else {
-          console.log("we ran into an error on player Two action dice")
+          writeToConsole("we ran into an error on player Two action dice")
         }
       }
     } else if (dice === 'actionTwoDice') {
       actionRoll = Math.ceil(Math.random()*20)
       roller.updateActionTwo(actionRoll)
-      console.log(`the ${roller.name} rolled a ${actionRoll}`)
+      writeToConsole(`the ${roller.name} rolled a ${actionRoll}`)
       if (roller === playerOne) {
         if (actionRoll === 1 && roller.race !== 'goblin') {
           document.getElementById('playerOneActionTwo').innerHTML = 'Bust'
@@ -1246,7 +1246,7 @@ function roll (roller, dice) {
           document.getElementById('playerOneActionTwo').innerHTML = 'Crit'
           roller.updateActionTwo('crit')
         } else {
-          console.log("we ran into an error on player one action dice")
+          writeToConsole("we ran into an error on player one action dice")
         }
       } else if (roller === playerTwo) {
         if (actionRoll === 1 && roller.race !== 'goblin') {
@@ -1269,12 +1269,12 @@ function roll (roller, dice) {
           document.getElementById('playerTwoActionTwo').innerHTML = 'Crit'
           roller.updateActionTwo('crit')
         } else {
-          console.log("we ran into an error on player Two action dice")
+          writeToConsole("we ran into an error on player Two action dice")
         }
       }
     }
   } else {
-    console.log('you are out of rolls')
+    writeToConsole('you are out of rolls')
   }
 }
 
@@ -1340,12 +1340,12 @@ function endingDamage(ender , other){
   if (other.double === true){
     attack(other, ender, 'basic')
     other.updateDouble(false)
-    console.log('secondd strike landed')
+    writeToConsole('secondd strike landed')
   }
   if (other.knockedDown === true){
     other.updateKnockedDown(false)
     rolls = 1
-    console.log('one roll was taken when knocked down')
+    writeToConsole('one roll was taken when knocked down')
   }
   if (ender.nuke === 2){
     if(ender.att > ender.mp) {
@@ -1354,7 +1354,7 @@ function endingDamage(ender , other){
       attack(ender, other, 'modified', ender.mp)
     }
     ender.updateNuke(0)
-    console.log('nuke has landed')
+    writeToConsole('nuke has landed')
   }
   if (other.nuke === 1){
     if(other.att > other.mp) {
@@ -1363,7 +1363,7 @@ function endingDamage(ender , other){
       attack(other, ender, 'modified', other.mp)
     }
     other.updateNuke(0)
-    console.log('nuke has landed')
+    writeToConsole('nuke has landed')
   }
 
   if (ender.missiles > 3){
@@ -1383,7 +1383,7 @@ function endingDamage(ender , other){
   if (other.daze === true){
     other.updateDaze(false)
     uses = 0
-    console.log('can not attack or use ability due to being dazed')
+    writeToConsole('can not attack or use ability due to being dazed')
   }
 
   if (ender.burn > 1){
@@ -1396,10 +1396,10 @@ function endingDamage(ender , other){
 
   if (ender.totem === 'fire'){
     attack(ender, other, 'specific', 1 )
-    console.log('fire totem delt one dmg')
+    writeToConsole('fire totem delt one dmg')
   } else if (ender.totem === 'water'){
     ender.heal(1)
-    console.log('water totem healed for one')
+    writeToConsole('water totem healed for one')
   }
 
   if (ender.rapidFire > 1){
@@ -1424,7 +1424,7 @@ function endingDamage(ender , other){
   }
   
   if (other.shieldsUp === true){
-    console.log('shields down')
+    writeToConsole('shields down')
     other.updateShieldsUp(false)
     other.armorUp(-2)
   }
@@ -1519,7 +1519,7 @@ function buy (buyer) {
       } else {
         document.querySelector('.playerTwo  .health').innerHTML = buyer.health
       }
-      console.log(` the ${buyer.name} bought a potion`)
+      writeToConsole(` the ${buyer.name} bought a potion`)
     } else if (item === 2 || item == 7 || item === 8) {
       buyer.armorUp(4)
       if (buyer === playerOne) {
@@ -1527,7 +1527,7 @@ function buy (buyer) {
       } else {
         document.querySelector('.playerTwo  .armor').innerHTML = buyer.armor
       }
-      console.log(` the ${buyer.name} bought armor`)
+      writeToConsole(` the ${buyer.name} bought armor`)
     } else if (item === 3) {
       if (buyer.att > buyer.mp) {
         buyer.attackUp(1)
@@ -1536,7 +1536,7 @@ function buy (buyer) {
         } else {
           document.querySelector('#playerTwoAttack > span').innerHTML = buyer.att
         }
-        console.log(` the ${buyer.name} bought a sword`)
+        writeToConsole(` the ${buyer.name} bought a sword`)
       }else {
         buyer.mpUp(1)
         if (buyer === playerOne) {
@@ -1544,37 +1544,37 @@ function buy (buyer) {
         } else {
           document.querySelector('#playerTwoAttack > img +span').innerHTML = buyer.mp
         }
-        console.log(` the ${buyer.name} bought a staff`)
+        writeToConsole(` the ${buyer.name} bought a staff`)
       }
     } else if (item === 4) {
       buyer.changeCloak(true)
-      console.log(`${buyer.cloak}`)
+      writeToConsole(`${buyer.cloak}`)
       if (buyer === playerOne) {
         document.getElementById('playerOneInventory').innerHTML = 'Cloak'
       } else {
         document.getElementById('playerTwoInventory').innerHTML = 'Cloak'
       }
-      console.log(` the ${buyer.name} bought a cloak ${buyer.cloak}`)
+      writeToConsole(` the ${buyer.name} bought a cloak ${buyer.cloak}`)
     }
   } else {
-    console.log(`You cant buy right now`)
+    writeToConsole(`You cant buy right now`)
   }
 }
 
 function checkUndead(player){
   if (player.race === 'undead'){
     player.heal(1)
-    console.log(`the ${player.name} leeched 1 health`)
+    writeToConsole(`the ${player.name} leeched 1 health`)
   }
 }
 
 function useAttack(attacker, target, type){
   if(attacker.invisible > 0){
     attacker.updateInvis( 0)
-    console.log('stealth has been broken by attacking')
+    writeToConsole('stealth has been broken by attacking')
   }
   if(target.invisible > 0){
-    console.log('can not attack what you do not see')
+    writeToConsole('can not attack what you do not see')
   } else if (whatIsReady(attacker) != 'none' && uses > 0) {
     uses = uses - 1
     if (target.cloak === true) {
@@ -1584,24 +1584,24 @@ function useAttack(attacker, target, type){
       } else {
         document.getElementById('playerTwoInventory').innerHTML = ''
       }
-      console.log(`the attacked was blocked by the ${target.name}'s cloak`)
+      writeToConsole(`the attacked was blocked by the ${target.name}'s cloak`)
       useAction(attacker, whatIsReady(attacker))
     
     } else if (target.actionOne === 'react'){
         resetAction(target, 'action one')
         useAction(attacker, whatIsReady(attacker))
-        console.log(`the attacked was blocked by the ${target.name}'s react`)
+        writeToConsole(`the attacked was blocked by the ${target.name}'s react`)
     } else if (target.actionTwo === 'react') {
         resetAction(target, 'action two')
         useAction(attacker, whatIsReady(attacker))
-        console.log(`the attacked was blocked by the ${target.name}'s react`)
+        writeToConsole(`the attacked was blocked by the ${target.name}'s react`)
     } else if (target.icy > 0 && (attacker.name != 'Mage' || attacker.name != 'Archer' || attacker.name != 'Druid')) {
         useAction(attacker, whatIsReady(attacker))
-        console.log(`you have attacked an icy fow and fallen ${attacker.name}`)
+        writeToConsole(`you have attacked an icy fow and fallen ${attacker.name}`)
         attacker.updateKnockedDown(true)
     } else if (target.earthShield === true && (attacker.name != 'Mage' || attacker.name != 'Archer' || attacker.name != 'Druid')) {
         useAction(attacker, whatIsReady(attacker))
-        console.log(`you have attacked ${attacker.name}'s earth shield and damage has been reduced`)
+        writeToConsole(`you have attacked ${attacker.name}'s earth shield and damage has been reduced`)
         let holder = attacker.att
         attacker.resetAttack(Math.ceil(holder/2))
         attack(attacker, target, 'basic')
@@ -1610,7 +1610,7 @@ function useAttack(attacker, target, type){
         attacker.updateArcaneFocus(false)
     } else if (target.earthShield === true && (attacker.name === 'Mage' || attacker.name === 'Archer' || attacker.name === 'Druid')) {
         useAction(attacker, whatIsReady(attacker))
-        console.log(`you have attacked ${attacker.name}'s earth shield and damage has been negated`)
+        writeToConsole(`you have attacked ${attacker.name}'s earth shield and damage has been negated`)
         target.updateEarthShield(false)
         attacker.updateArcaneFocus(false)
     } else {
@@ -1625,7 +1625,7 @@ function useAttack(attacker, target, type){
         }
     }
   } else {
-    console.log('cannot attack (check if action selected)')
+    writeToConsole('cannot attack (check if action selected)')
   }
 }
 
@@ -1636,7 +1636,7 @@ function attack(attacker, target, type, mod=0){
       if(target.deflect === true){
         target.updateLastAttack(dmg)
         attacker.attacked(Math.ceil(dmg/2))
-        console.log(`the ${target.name} deflected returning ${Math.ceil(dmg/2)}`)
+        writeToConsole(`the ${target.name} deflected returning ${Math.ceil(dmg/2)}`)
         dmg = 0
         target.updateDeflect(false)
         attacker.resetMulti()
@@ -1648,7 +1648,7 @@ function attack(attacker, target, type, mod=0){
       if(target.deflect === true){
         target.updateLastAttack(dmg)
         attacker.attacked(Math.ceil(dmg/2))
-        console.log(`the ${target.name} deflected returning ${Math.ceil(dmg/2)}`)
+        writeToConsole(`the ${target.name} deflected returning ${Math.ceil(dmg/2)}`)
         dmg = 0
         target.updateDeflect(false)
         attacker.resetMulti()
@@ -1779,17 +1779,17 @@ function resetOldStatus(who){
 function useAbility(user, target){
   if(user.invisible > 0){
     user.updateInvis(0)
-    console.log('stealth has been broken by attacking')
+    writeToConsole('stealth has been broken by attacking')
   }
   if(target.invisible > 0 && (abilityType(hasMove(user)[0], hasMove(user)[1]) === 'ranged' || abilityType(hasMove(user)[0], hasMove(user)[1]) === 'melee')){
-    console.log('can not attack what you do not see')
+    writeToConsole('can not attack what you do not see')
   } else if (whatIsReady(user) != 'none' && uses > 0 && (abilityType(hasMove(user)[0], hasMove(user)[1]) === 'ranged' || abilityType(hasMove(user)[0], hasMove(user)[1]) === 'melee') ) {
     uses = uses - 1
     if (target.icy > 0 && abilityType(hasMove(user)[0], hasMove(user)[1]) === 'melee') {
       resetClassMoves(user)
       useAction(user, whatIsReady(user))
       resetOldStatus(user)
-      console.log(`you have attacked an icy foe and fallen ${user.name}`)
+      writeToConsole(`you have attacked an icy foe and fallen ${user.name}`)
       attacker.updateKnockedDown(true)
     } else if (target.cloak === true) {
       target.changeCloak(false)
@@ -1798,7 +1798,7 @@ function useAbility(user, target){
       } else {
         document.getElementById('playerTwoInventory').innerHTML = ''
       }
-      console.log(`the ability was blocked by the ${target.name}'s cloak`)
+      writeToConsole(`the ability was blocked by the ${target.name}'s cloak`)
       resetClassMoves(user)
       useAction(user, whatIsReady(user))
       resetOldStatus(user)
@@ -1808,22 +1808,22 @@ function useAbility(user, target){
         resetAction(target, 'action one')
         useAction(user, whatIsReady(user))
         resetOldStatus(user)
-        console.log(`the ability was blocked by the ${target.name}'s react`)
+        writeToConsole(`the ability was blocked by the ${target.name}'s react`)
     } else if (target.actionTwo === 'react') {
         resetClassMoves(user)
         resetAction(target, 'action two')
         useAction(user, whatIsReady(user))
         resetOldStatus(user)
-        console.log(`the ability was blocked by the ${target.name}'s react`)
+        writeToConsole(`the ability was blocked by the ${target.name}'s react`)
     } else if(target.earthShield === true){
         if(abilityType(hasMove(user)[0], hasMove(user)[1]) === 'ranged'){
           resetClassMoves(user)
           useAction(user, whatIsReady(user))
           resetOldStatus(user)
-          console.log(`you have attacked ${user.name}'s earth shield and ability has been negated`)
+          writeToConsole(`you have attacked ${user.name}'s earth shield and ability has been negated`)
           target.updateEarthShield(false)
         }else if(abilityType(hasMove(user)[0], hasMove(user)[1]) === 'melee'){
-          console.log(`you have attacked ${user.name}'s earth shield and damage has been reduced`)
+          writeToConsole(`you have attacked ${user.name}'s earth shield and damage has been reduced`)
           let holder = user.att
           if (((whatIsReady(user) === 'action one' && user.actionOne === 'crit') || (whatIsReady(user) === 'action two' && user.actionTwo === 'crit'))){
             user.resetAttack(holder)
@@ -1847,7 +1847,7 @@ function useAbility(user, target){
     } else if (target.tarred === true){
         resetOldStatus(user)  
         useAction(user, whatIsReady(user))
-        console.log(`the ${target.name}'s tarr trap has been set, your ability will go off next turn`)
+        writeToConsole(`the ${target.name}'s tarr trap has been set, your ability will go off next turn`)
         tarred['name'] = hasMove(user)[0]
         tarred['move'] = hasMove(user)[1]
         resetClassMoves(user)
@@ -1858,11 +1858,11 @@ function useAbility(user, target){
           useAction(user, whatIsReady(user))
           resetOldStatus(user)
           self.updateNuke(2)
-          console.log('nuke quickly incoming')
+          writeToConsole('nuke quickly incoming')
           resetClassMoves(user)
 
         } else if (((whatIsReady(user) === 'action one' && user.actionOne === 'crit') || (whatIsReady(user) === 'action two' && user.actionTwo === 'crit'))){
-            console.log('thats a cit')
+            writeToConsole('thats a cit')
             resetOldStatus(user)
             user.updateMulti(2)
             executeAbility(user)
@@ -1881,7 +1881,7 @@ function useAbility(user, target){
   } else if (whatIsReady(user) != 'none' && uses > 0 && abilityType(hasMove(user)[0], hasMove(user)[1]) === 'heal'){
     uses = uses - 1
       if (((whatIsReady(user) === 'action one' && user.actionOne === 'crit') || (whatIsReady(user) === 'action two' && user.actionTwo === 'crit'))){
-        console.log('thats a crit heal')
+        writeToConsole('thats a crit heal')
         resetOldStatus(user)
         user.updateMulti(2)
         executeAbility(user)
@@ -1903,7 +1903,7 @@ function useAbility(user, target){
           useAction(user, whatIsReady(user))
           resetClassMoves(user)
         }else {
-          console.log('need more action points to upgrade')
+          writeToConsole('need more action points to upgrade')
         }
       } else if(hasMove(user)[1] === 4 && user.name === 'Warrior'||hasMove(user)[1] === 1 && user.name === 'Druid'|| hasMove(user)[1] === 2 && user.name === 'Druid'){
           resetOldStatus(user)
@@ -1951,7 +1951,7 @@ function useAbility(user, target){
 
 function useAction(player, action){
   if (action === 'none'){
-    console.log("can not preform")
+    writeToConsole("can not preform")
   } else if (action === 'both' || action === 'action one'){
       resetAction(player, 'action one')
   } else if (action === 'action two'){
@@ -1977,7 +1977,7 @@ function resetAction(player, action) {
         playerTwo.updateActionTwo('')
     }
   } else {
-    console.log(`failed to reset ${player.name}'s ${action}`)
+    writeToConsole(`failed to reset ${player.name}'s ${action}`)
   }
 }
 /*********************************************************************
@@ -2030,4 +2030,10 @@ function gameStart () {
 
 }
 
+/*********************************************************************
+ * Console
+ * ***********************************************/
 
+function writeToConsole (words){
+  document.getElementById('consoleContent').innerHTML += (words + "<br/>")
+}
