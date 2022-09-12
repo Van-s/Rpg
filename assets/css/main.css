@@ -253,6 +253,10 @@ h3 {
 	--font-color: white;
 }
 
+#console img {
+	max-height: 2rem;
+	max-width: 2rem;
+}
 
 
 #rogueCare h3 {
@@ -400,6 +404,13 @@ input[type="checkbox"] {
 	appearance: checkbox !important;
 }
 
+#game {
+	padding-top: 10rem;
+	padding-bottom: 10rem;
+	background-image: url("/images/mountain.jpg");
+	background-size: cover;
+	
+}
 
 .card, .card * , .topCard *, .middleCard *, .movesCard * 
 .bottomCard *, .cardStats .armor, .cardStats .health, .cardStats .status{
@@ -422,9 +433,21 @@ main {
 #console{
 	border: .25rem solid black;
 	border-radius: 1rem;
-	width: 30%;
-	height: 10Rem;
+	width: 25%;
+	height: 20Rem;
 	overflow-y: auto;
+	background-color: gray;
+	opacity: 50%;
+	color: white;
+}
+
+#console hr {
+	background-color: black;
+	height: 0.25rem;
+	margin-top: 0;
+	margin-bottom: 0;
+	border-bottom: #1C0920;
+	top: 0;
 }
 
 .card {

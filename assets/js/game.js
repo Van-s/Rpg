@@ -23,6 +23,7 @@ const rogueDict = {
     abilityOne: function (self, enemy){
       attack(self, enemy, 'basic')
       self.updateDouble(true)
+      writeToConsole('./images/quickAttack.png', "img")
       writeToConsole('first strike landed')
     },
     abilityTwo: function (self, enemy){
@@ -426,6 +427,7 @@ const druidDict = {
         writeToConsole('the supression has failed to perform again so soon')
       } else {
           self.updateSuppression(2)
+          enemy.updateBases(enemy.att, enemy.mp)
           enemy.attackUp(-2)
           enemy.mpUp(-2)
         writeToConsole(`the ${self.name} has completed the supression and taken power`)
@@ -448,6 +450,8 @@ class playableClass {
     this.armor = 0;
     this.att= 0;
     this.mp = 0;
+    this.baseMP = this.mp;
+    this.baseATT = this.att;
     this.multi = 1;
     this.name = '';
     this.moves = [];
@@ -499,6 +503,10 @@ class playableClass {
       abilitySix: function (){}
     }
   }
+  updateBases(numOne, numTwo){
+    this.baseATT = numOne;
+    this.baseMP = numTwo;
+  }
   updateNuke(val){
     this.nuke = val
   }
@@ -543,9 +551,6 @@ class playableClass {
   }
   updateIcy(num){
     this.icy = num
-  }
-  updateNuke(num){
-    this.nuke = num
   }
   updateSuppression(num){
     this.suppression = num
@@ -1349,18 +1354,18 @@ function endingDamage(ender , other){
   }
   if (ender.nuke === 2){
     if(ender.att > ender.mp) {
-      attack(ender, other, 'modified', ender.att)
+      attack(ender, other, 'crit', ender.att)
     } else{
-      attack(ender, other, 'modified', ender.mp)
+      attack(ender, other, 'crit', ender.mp)
     }
     ender.updateNuke(0)
     writeToConsole('nuke has landed')
   }
   if (other.nuke === 1){
     if(other.att > other.mp) {
-      attack(other, ender, 'modified', other.att)
+      attack(other, ender, 'crit', other.att)
     } else{
-      attack(other, ender, 'modified', other.mp)
+      attack(other, ender, 'crit', other.mp)
     }
     other.updateNuke(0)
     writeToConsole('nuke has landed')
@@ -1442,8 +1447,8 @@ function endingDamage(ender , other){
     ender.updateSuppression(1)
   } else if (ender.suppression > 0){
       ender.updateSuppression(0)
-      other.attackUp(2)
-      other.mpUp(2)
+      other.resetAttack(other.baseATT)
+      other.resetMP(other.baseMP)
   }
 
   if(ender.form === 'bear'){
@@ -1457,6 +1462,7 @@ function endingDamage(ender , other){
   if (liveGame === false) {
     alert('the game has not started')
   } else {
+    document.getElementById('console').innerHTML += (`<hr>`)
     if (target === playerOne) {
       playerOne.play = false
       playerTwo.play = true
@@ -1464,8 +1470,8 @@ function endingDamage(ender , other){
       for(var i = 0; i < elems.length; i++) {
         elems[i].disabled = false;
       }
-      document.querySelector('.p1turnDisplay').innerHTML = ''
-      document.querySelector('.p2turnDisplay').innerHTML = 'Your turn'
+      document.getElementById('playerOneEntireCard').style.opacity = "0.65"
+      document.getElementById('playerTwoEntireCard').style.opacity = "1"
       var elems = document.getElementsByClassName("playerOneButtons");
       for(var i = 0; i < elems.length; i++) {
         elems[i].disabled = true;
@@ -1479,8 +1485,8 @@ function endingDamage(ender , other){
       for(var i = 0; i < elems.length; i++) {
         elems[i].disabled = false;
       }
-      document.querySelector('.p2turnDisplay').innerHTML = ''
-      document.querySelector('.p1turnDisplay').innerHTML = 'Your turn'
+      document.getElementById('playerTwoEntireCard').style.opacity = "0.65"
+      document.getElementById('playerOneEntireCard').style.opacity = "1"
       var elems = document.getElementsByClassName("playerTwoButtons");
       for(var i = 0; i < elems.length; i++) {
         elems[i].disabled = true;
@@ -2003,8 +2009,8 @@ function gameOver() {
 function gameStart () {
   if (playerOne.speed < playerTwo.speed) {
     playerOne.play = true
-    document.querySelector('.p2turnDisplay').innerHTML = ''
-    document.querySelector('.p1turnDisplay').innerHTML = 'Your turn'
+    document.getElementById('playerTwoEntireCard').style.opacity = "0.65"
+    document.getElementById('playerOneEntireCard').style.opacity = "1"
     var playelems = document.getElementsByClassName("playerOneButtons");
     for(var i = 0; i < playelems.length; i++) {
       playelems[i].disabled = false;
@@ -2015,8 +2021,8 @@ function gameStart () {
     }
   } else {
     playerTwo.play = true
-    document.querySelector('.p1turnDisplay').innerHTML = ''
-    document.querySelector('.p2turnDisplay').innerHTML = 'Your turn'
+    document.getElementById('playerOneEntireCard').style.opacity = "0.65"
+    document.getElementById('playerTwoEntireCard').style.opacity = "1"
     var playelems = document.getElementsByClassName("playerTwoButtons");
     for(var i = 0; i < playelems.length; i++) {
       playelems[i].disabled = false;
@@ -2034,6 +2040,12 @@ function gameStart () {
  * Console
  * ***********************************************/
 
-function writeToConsole (words){
-  document.getElementById('consoleContent').innerHTML += (words + "<br/>")
+function writeToConsole (words, type = 'empty'){
+  if (type === 'img'){
+    document.getElementById('console').innerHTML += (`<img src =${words}></img>`)
+  }else {
+    document.getElementById('console').innerHTML += (`<p>${words}</p>` )
+  }
+  document.getElementById('console').scrollTop = document.getElementById('console').scrollHeight
+  
 }
