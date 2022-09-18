@@ -13,7 +13,6 @@
 
 			<!-- Header -->
 				<div id="header">
-
 					<!-- Inner -->
 						<div class="inner">
 							<header>
@@ -25,7 +24,6 @@
 								<a href="#game" id="battleButton" class="button circled scrolly">Battle</a>
 							</footer>
 						</div>
-
 					<!-- Nav -->
 						<nav id="nav">
 							<ul>
@@ -36,17 +34,14 @@
 
 							</ul>
 						</nav>
-
 				</div>
 
 			<!-- Banner -->
 				<section id="gameDescription">
-					<header>
 						<h3>Welcome to the Arena</h2>
 						<p>
 							Immerse yourself into this RPG dice battler. Pick your race and class then let your mind let loose.
 						</p>
-					</header>
 				</section>
 
 						<!-- Main -->
@@ -75,6 +70,7 @@
 										<span class="armor">0</span>
 										<img  class="heartImage" src="./images/heart.png">
 										<span class="health">0</span>
+										<img id="playerOneCloak" src="./images/cloak.png" alt="">
 									</section>
 								</section>
 								<section class="middleCard">
@@ -130,19 +126,20 @@
 										<button id="playerOneActionTwo" class="ActionDice buttons playerOneButtons" onclick="roll(playerOne, 'actionTwoDice')" disabled="true">Action</button>
 										<input type="checkbox" id="playerOneActionTwoCheck" class="checkbox">
 									</div>
-									<button class="endTurn buttons playerOneButtons" onclick="endTurn(playerOne)" disabled="true">End Turn</button>
+									<button class="endTurn buttons playerOneButtons" onclick="endTurn(playerOne)" disabled="true">End</button>
 								</section>
-								<section class="locks">
-									<button id="playerOneReset" onclick="playerOneReset()" class="resButtons buttons">Reset</button>
-									<span class="p1turnDisplay"></span>
-									<button id="playerOneLock" onclick="playerOneLock()" class="lockButtons buttons ">Lock</button>
-								</section>
+
 							</section>
 
+						<!-- Center -->
+							<section id="center">
 							<!-- Console -->
 							<section id="console">
 								<!-- <p id="consoleContent"></p> -->
 							</section>
+
+							<button id="gameStartButton" onclick="checkGameStart()" class="buttons">Start</button>
+						</section>
 
 							<section class="card playerTwo" id="playerTwoEntireCard">
 								<section class="topCard">
@@ -168,6 +165,7 @@
 										<span class="armor">0</span>
 										<img  class="heartImage" src="./images/heart.png">
 										<span class="health">0</span>
+										<img id="playerTwoCloak" src="./images/cloak.png" alt="">
 									</section>
 								</section>
 								<section class="middleCard">
@@ -223,12 +221,7 @@
 										<button id="playerTwoActionTwo" class="ActionDice buttons playerTwoButtons" onclick="roll(playerTwo, 'actionTwoDice')" disabled="true">Action</button>
 										<input type="checkbox" id="playerTwoActionTwoCheck" class="checkbox" >
 									</div>
-									<button class="endTurn buttons playerTwoButtons" onclick="endTurn(playerTwo)" disabled="true">End Turn</button>
-								</section>
-								<section class="locks">
-									<button id="playerTwoReset" onclick="playerTwoReset()" class="resButtons buttons">Reset</button>
-									<span class="p2turnDisplay"></span>
-									<button id="playerTwoLock" onclick="playerTwoLock()" class="lockButtons buttons">Lock</button>
+									<button class="endTurn buttons playerTwoButtons" onclick="endTurn(playerTwo)" disabled="true">End</button>
 								</section>
 							</section>
 						</main>

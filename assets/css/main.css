@@ -67,7 +67,7 @@ input::-moz-focus-inner {
 
 input, select, textarea {
 	-moz-appearance: none;
-	-webkit-appearance: none;
+	-webkit-appearance: checkbox;
 	-ms-appearance: none;
 	appearance: none;
 }
@@ -253,6 +253,12 @@ h3 {
 	--font-color: white;
 }
 
+#center {
+	display: flex;
+	flex-direction: column;
+	width: 25%;
+}
+
 #console img {
 	max-height: 2rem;
 	max-width: 2rem;
@@ -392,6 +398,17 @@ body {
 	border: 3px solid white;
 }
 
+/* animations */
+
+
+
+@keyframes reset {
+  from {transform: scale(1);}
+  to {transform: scale(1.15);}
+}
+
+
+
 
 /* Game */
 
@@ -417,6 +434,8 @@ input[type="checkbox"] {
   display: flex;
 }
 
+
+
 .topCard, .bottomCard , .middleCard, .movesCard{
 	margin-bottom: .5em;
 }
@@ -433,7 +452,7 @@ main {
 #console{
 	border: .25rem solid black;
 	border-radius: 1rem;
-	width: 25%;
+	width: 100%;
 	height: 20Rem;
 	overflow-y: auto;
 	background-color: gray;
@@ -512,6 +531,14 @@ main {
   justify-content: center;
   align-content: center;
   font-size: 1rem;
+}
+
+#playerOneCloak, #playerTwoCloak {
+	display: flex;
+	max-height: 25px;
+	max-width: 25px;
+	width: 20%;
+	visibility: hidden;
 }
 
 .attackImg, .buyImg, .useImg{
@@ -2191,8 +2218,8 @@ main {
 		margin-bottom: 0;
 	}
 
-	header {
-		margin: 0 0 1em 0;
+	#gameDescription {
+		background: linear-gradient(#272e36,#c8d9e9);
 	}
 
 		header > p {
@@ -3579,6 +3606,9 @@ main {
 	.armorImage , .heartImage{
 		margin-right: -3rem;
 
+	}
+	#center {
+		width: 100%;
 	}
 
 	#console {

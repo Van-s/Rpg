@@ -840,14 +840,86 @@ let lockOne = false
 let lockTwo = false
 let rolls = 2
 let uses = 1
-function playerOneLock () {  
 
-  if (playerOne.name === '') {
-    alert('you for got a class brother')
-  } else if(lockOne === true){
-    writeToConsole(`you are already locked in player one`)
-  } else {
-    lockOne = true
+
+function checkGameStart() {
+  if(liveGame === true){
+    // player One reset
+    document.getElementById('p1ClassSelect').removeAttribute('disabled')
+    document.getElementById('p1RaceSelect').removeAttribute('disabled')
+    document.getElementById('p1ClassSelect').selectedIndex = null
+    document.getElementById('p1RaceSelect').selectedIndex = null
+    document.querySelector('.playerOne .moveOne > p').innerHTML = ''
+    document.querySelector('.playerOne .moveTwo > p').innerHTML = ''
+    document.querySelector('.playerOne .moveThree > p').innerHTML = ''
+    document.querySelector('.playerOne .moveFour > p').innerHTML = ''
+    document.querySelector('.playerOne .moveFive > p').innerHTML = ''
+    document.querySelector('.playerOne .moveSix > p').innerHTML = ''
+    document.querySelector('.playerOne .armor').innerHTML = 0
+    document.querySelector('.playerOne .health').innerHTML = 0
+    document.querySelector('.playerOne .attack > span').innerHTML = 0
+    document.querySelector('.playerOne .attack > img + span').innerHTML = 0
+    document.getElementById('playerOneEntireCard').style.background = startBackground
+    var elems = document.getElementsByClassName("playerOneButtons");
+    for(var i = 0; i < elems.length; i++) {
+      elems[i].style.backgroundColor = startButtonColor
+    }
+    resetAction(playerOne, 'action one')
+    resetAction(playerOne, 'action two')
+
+    var elems = document.getElementsByClassName("playerOneMoves");
+        for(var i = 0; i < elems.length; i++) {
+          elems[i].style.backgroundColor = startBackground
+        }
+
+    // player Two reset
+    document.getElementById('p2ClassSelect').removeAttribute('disabled')
+    document.getElementById('p2RaceSelect').removeAttribute('disabled')
+    document.getElementById('p2ClassSelect').selectedIndex = null
+    document.getElementById('p2RaceSelect').selectedIndex = null
+    document.querySelector('.playerTwo .moveOne > p').innerHTML = ''
+    document.querySelector('.playerTwo .moveTwo > p').innerHTML = ''
+    document.querySelector('.playerTwo .moveThree > p').innerHTML = ''
+    document.querySelector('.playerTwo .moveFour > p').innerHTML = ''
+    document.querySelector('.playerTwo .moveFive > p').innerHTML = ''
+    document.querySelector('.playerTwo .moveSix > p').innerHTML = ''
+    document.querySelector('.playerTwo .armor').innerHTML = 0
+    document.querySelector('.playerTwo .health').innerHTML = 0
+    document.querySelector('.playerTwo .attack > span').innerHTML = 0
+    document.querySelector('.playerTwo .attack > img + span').innerHTML = 0
+    document.getElementById('playerTwoEntireCard').style.background = startBackground
+    var elems = document.getElementsByClassName("playerTwoButtons");
+    for(var i = 0; i < elems.length; i++) {
+      elems[i].style.backgroundColor = startButtonColor
+    }
+    resetAction(playerTwo, 'action one')
+    resetAction(playerTwo, 'action two')
+
+    var elems = document.getElementsByClassName("playerTwoMoves");
+        for(var i = 0; i < elems.length; i++) {
+          elems[i].style.backgroundColor = startBackground
+        }
+
+
+    playerOne.changeRace('')
+    playerOne.changeClass('')
+    playerTwo.changeRace('')
+    playerTwo.changeClass('')
+
+    resetClassMoves(playerOne)
+    resetClassMoves(playerTwo)
+    document.getElementById('console').innerHTML = ''
+    writeToConsole('Game Reset')
+    gameOver()
+    document.getElementById('gameStartButton').innerHTML = 'Start'
+
+    document.getElementById('playerOneEntireCard').style.animation = 'reset .75s 1'
+    document.getElementById('playerTwoEntireCard').style.animation = 'reset .75s 1'
+
+  }else if(playerOne.name !== '' && playerTwo.name !== '' && playerOne.race !== '' && playerTwo.race !== ''){
+    document.getElementById('playerOneEntireCard').style.animation = ''
+    document.getElementById('playerTwoEntireCard').style.animation = ''
+    // player one load in
     document.getElementById('p1ClassSelect').setAttribute('disabled', 'disabled')
     document.getElementById('p1RaceSelect').setAttribute('disabled', 'disabled')
     document.querySelector('.playerOne .moveOne > p').innerHTML = playerOne.moves[0]
@@ -865,6 +937,10 @@ function playerOneLock () {
     for(var i = 0; i < elems.length; i++) {
       elems[i].style.backgroundColor = playerOne.buttonColor
     }
+    var elems = document.getElementsByClassName("playerOneMoves");
+        for(var i = 0; i < elems.length; i++) {
+          elems[i].style.backgroundColor = playerOne.backgroundColor
+        }
     if(playerOne.race === 'goblin'){
     } else if (playerOne.race === 'orc'){
       playerOne.changehealthMax(2)
@@ -878,24 +954,8 @@ function playerOneLock () {
       document.querySelector('.playerOne .armor').innerHTML = playerOne.armor
     } else if(playerOne.race === 'undead'){
       writeToConsole('welcome to the undead army')
-    } else {
-      alert('you forgot a race brother')
     }
-    playerOne.ready = true
-  }
-  if (playerOne.ready === true && playerTwo.ready === true){
-    gameStart()
-  }
-}
-
-function playerTwoLock () {  
-
-  if (playerTwo.name === '') {
-    alert('you for got a class brother')
-  }else if(lockTwo === true){
-    writeToConsole(`you are already locked in player two`)
-  }else {
-    lockTwo = true
+    // player Two load in
     document.getElementById('p2ClassSelect').setAttribute('disabled', 'disabled')
     document.getElementById('p2RaceSelect').setAttribute('disabled', 'disabled')
     document.querySelector('.playerTwo .moveOne > p').innerHTML = playerTwo.moves[0]
@@ -913,6 +973,10 @@ function playerTwoLock () {
     for(var i = 0; i < elems.length; i++) {
       elems[i].style.backgroundColor = playerTwo.buttonColor
     }
+    var elems = document.getElementsByClassName("playerTwoMoves");
+        for(var i = 0; i < elems.length; i++) {
+          elems[i].style.backgroundColor = playerTwo.backgroundColor
+        }
     if(playerTwo.race === 'goblin'){
     } else if (playerTwo.race === 'orc'){
         playerTwo.changehealthMax(2)
@@ -926,47 +990,14 @@ function playerTwoLock () {
         document.querySelector('.playerTwo .armor').innerHTML = playerTwo.armor
     } else if(playerTwo.race === 'undead'){
       writeToConsole('welcome to the undead army')
-    }  else {
-      alert('you forgot a race brother')
     }
-    playerTwo.ready = true
-  }
-  if (playerOne.ready === true && playerTwo.ready === true){
     gameStart()
+    document.getElementById('gameStartButton').innerHTML = 'Reset'
+  }else {
+    writeToConsole('Please make sure both players have selected a race and class')
   }
 }
 
-function playerOneReset () {
-  document.getElementById('p1ClassSelect').removeAttribute('disabled')
-  document.getElementById('p1RaceSelect').removeAttribute('disabled')
-  document.getElementById('p1ClassSelect').selectedIndex = null
-  document.getElementById('p1RaceSelect').selectedIndex = null
-  document.getElementById('playerOneEntireCard').style.background = startBackground
-  var elems = document.getElementsByClassName("playerOneButtons");
-  for(var i = 0; i < elems.length; i++) {
-    elems[i].style.backgroundColor = startButtonColor
-  }
-  resetAction(playerOne, 'action one')
-  resetAction(playerOne, 'action two')
-  writeToConsole('Game Reset by player one')
-  gameOver()
-}
-
-function playerTwoReset () {
-  document.getElementById('p2ClassSelect').removeAttribute('disabled')
-  document.getElementById('p2RaceSelect').removeAttribute('disabled')
-  document.getElementById('p2ClassSelect').selectedIndex = null
-  document.getElementById('p2RaceSelect').selectedIndex = null
-  document.getElementById('playerTwoEntireCard').style.background = startBackground
-  var elems = document.getElementsByClassName("playerTwoButtons");
-  for(var i = 0; i < elems.length; i++) {
-    elems[i].style.backgroundColor = startButtonColor
-  }
-  resetAction(playerTwo, 'action one')
-  resetAction(playerTwo, 'action two')
-  writeToConsole('Game Reset by player two')
-  gameOver()
-}
 
 function resetClassMoves (selected) {
   if (selected === playerOne){
@@ -1499,6 +1530,16 @@ function endingDamage(ender , other){
   }
 }
 
+function hide(el) {
+  el.style.visibility = 'hidden';    
+  return el;
+}
+
+function show(el) {
+  el.style.visibility = 'visible';    
+  return el;
+}
+
 function buy (buyer) {
   item = Math.ceil(Math.random()*8)
   if (buyer.actionOne === 'buy' || buyer.actionTwo === 'buy') {
@@ -1557,8 +1598,10 @@ function buy (buyer) {
       writeToConsole(`${buyer.cloak}`)
       if (buyer === playerOne) {
         document.getElementById('playerOneInventory').innerHTML = 'Cloak'
+        show(document.getElementById('playerOneCloak'))
       } else {
         document.getElementById('playerTwoInventory').innerHTML = 'Cloak'
+        show(document.getElementById('playerTwoCloak'))
       }
       writeToConsole(` the ${buyer.name} bought a cloak ${buyer.cloak}`)
     }
@@ -1566,6 +1609,8 @@ function buy (buyer) {
     writeToConsole(`You cant buy right now`)
   }
 }
+
+
 
 function checkUndead(player){
   if (player.race === 'undead'){
@@ -1587,8 +1632,10 @@ function useAttack(attacker, target, type){
       target.changeCloak(false)
       if (target === playerOne) {
         document.getElementById('playerOneInventory').innerHTML = ''
+        hide(document.getElementById('playerOneCloak'))
       } else {
         document.getElementById('playerTwoInventory').innerHTML = ''
+        hide(document.getElementById('playerTwoCloak'))
       }
       writeToConsole(`the attacked was blocked by the ${target.name}'s cloak`)
       useAction(attacker, whatIsReady(attacker))
@@ -1801,8 +1848,10 @@ function useAbility(user, target){
       target.changeCloak(false)
       if (target === playerOne) {
         document.getElementById('playerOneInventory').innerHTML = ''
+        hide(document.getElementById('playerOneCloak'))
       } else {
         document.getElementById('playerTwoInventory').innerHTML = ''
+        hide(document.getElementById('playerTwoCloak'))
       }
       writeToConsole(`the ability was blocked by the ${target.name}'s cloak`)
       resetClassMoves(user)
@@ -2033,6 +2082,8 @@ function gameStart () {
     }
   }
   liveGame = true
+  rolls = 2
+  uses = 1
 
 }
 
